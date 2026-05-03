@@ -49,7 +49,7 @@ network:
    target: Q1
    probability: 0.5
 -  source: Q2
-   target: Q3
+   target: Q2
    probability: 0.3
 -  source: Q3
    target: Q1
