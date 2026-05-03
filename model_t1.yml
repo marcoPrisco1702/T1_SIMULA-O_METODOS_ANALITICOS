@@ -1,0 +1,64 @@
+#==============================================================================
+#  MODELO DO TRABALHO T1 - Avaliação de Aprendizagem
+#  Rede de Filas conforme enunciado (imagem 2)
+#==============================================================================
+#
+#  Topologia (leitura do diagrama):
+#    Chegada externa -> Q1 (G/G/1)  inter-chegada 2..4min
+#    Q1 -> Q2  (prob 0.8)
+#    Q1 -> Q3  (prob 0.2)
+#    Q2 -> exterior  (prob 0.2)
+#    Q2 -> Q1        (prob 0.5)   [retroalimentacao - seta de volta]
+#    Q2 -> Q3        (prob 0.3)   [seta de Q2 para Q3]
+#    Q3 -> exterior  (prob 0.3)
+#    Q3 -> Q1        (prob 0.7)   [retroalimentacao - seta de volta]
+#
+#  Primeiro cliente chega no tempo 2.0
+#  Simulacao encerra ao usar o 100.000o aleatorio
+#
+!PARAMETERS
+arrivals:
+   Q1: 2.0
+
+queues:
+   Q1:
+      servers: 1
+      minArrival: 2.0
+      maxArrival: 4.0
+      minService: 1.0
+      maxService: 2.0
+   Q2:
+      servers: 2
+      capacity: 5
+      minService: 4.0
+      maxService: 6.0
+   Q3:
+      servers: 2
+      capacity: 10
+      minService: 5.0
+      maxService: 15.0
+
+network:
+-  source: Q1
+   target: Q2
+   probability: 0.8
+-  source: Q1
+   target: Q3
+   probability: 0.2
+-  source: Q2
+   target: Q1
+   probability: 0.5
+-  source: Q2
+   target: Q3
+   probability: 0.3
+-  source: Q3
+   target: Q1
+   probability: 0.7
+
+rndnumbersPerSeed: 100000
+seeds:
+- 1
+- 2
+- 3
+- 4
+- 5
